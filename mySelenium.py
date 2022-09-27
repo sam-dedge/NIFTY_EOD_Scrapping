@@ -13,7 +13,7 @@ browser_options = webdriver.ChromeOptions()
 
 today = date.today()
 today = today.strftime("%d%b%Y")
-download_path = os.path.join(proj_path+"\sample",today)
+download_path = os.path.join(proj_path+"\data",today)
 #print('PATH:', download_path)
 if not os.path.exists(download_path):
     os.mkdir(download_path)
@@ -28,11 +28,11 @@ print('Website Title: ', driver.title)
 #eq_select = driver.find_element_by_id("equity_optionchain_select")
 sel_tickr = Select(driver.find_element_by_id("equity_optionchain_select"))
 sel_tickr.select_by_visible_text("NIFTY")
-time.sleep(1)
+#time.sleep(1)
 
 sel_maturity = driver.find_element_by_id("expirySelect")
 dropdown_maturity = Select(sel_maturity)
-time.sleep(1)
+#time.sleep(1)
 #print(sel_maturity)
 #print(dropdown_maturity)
 #dropdown_maturity.select_by_value("Select")
@@ -41,7 +41,7 @@ maturities = []
 for opt in dropdown_maturity.options:
     maturities.append(opt.text)
 
-maturities = maturities[1:4]
+maturities = maturities[1:]
 #print(maturities)
 
 #dropdown_maturity.select_by_visible_text(maturities[1])
@@ -58,5 +58,4 @@ for matu in maturities:
 
 #print(driver.page_source)
 
-time.sleep(3)
 driver.quit()
